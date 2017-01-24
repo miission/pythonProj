@@ -30,7 +30,7 @@ class Sgbt():
             resiY = 2*y_train/(1+np.exp(2*y_train*self.f))
             meanresiy = np.mean(np.abs(resiY))
             if meanresiy<self.earlystop:
-                print rd
+                print(rd)
                 break
             slf = stree(depth = self.maxdepth,minisamp = self.minisamp,precise = self.precise,fitfunc=self.fittype)               
             self.forest[rd],fity = slf.fit(X_train,resiY)             
