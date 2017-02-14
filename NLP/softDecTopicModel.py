@@ -6,8 +6,8 @@ Created on Fri Dec 09 11:22:35 2016
 """
 from __future__ import division
 import numpy as np
-from DeepLearning.activeFunctions import actfuncs
-from DeepLearning.BasicNeuron import softmaxLayer
+from NeuronLayers.activeFunctions import actfuncs
+from NeuronLayers.BasicNeuron import softmaxLayer
 import pickle
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 #corps = pickle.load(open("C:\\Users\\Administrator.NBJXUEJUN-LI\\Desktop\\project\\pick1214sec.pkl","rb"))
@@ -55,7 +55,7 @@ for docidx in range(docNums):
     word2doc[docidx][doc]=1
 word2doc = word2doc.T
 #-----------------------------------------------------------------------------------------------------------------------------------------------
-learning =0.0001
+learning =0.001
 l2 = 0
 ers = 0
 cot = 0
@@ -104,5 +104,5 @@ outDF = [keywords,keysentences]
 import pandas as pd
 outDF = pd.DataFrame(outDF)
 outDF = outDF.T
-dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/主题词句.xlsx'
+dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/主题词句2.xlsx'
 outDF.to_excel(dirs,encoding='gb18030',index=False,header=None )

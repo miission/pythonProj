@@ -9,24 +9,25 @@ import jieba
 import pandas as pd
 import numpy as np
 from collections import Counter
-jieba.load_userdict('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/Python/intel_cust_stastis/userDict.txt')  
+jieba.load_userdict('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/pythonProj/intel_cust_stastis/userDict.txt')  
 #---------------------------------------------------------------------------------------------------
-rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/conversation.csv',
-                      header=0,encoding='gbk',usecols=[0,1,2,3,4,5,6 ])
+#rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/conversation.csv',
+#                      header=0,encoding='gbk',usecols=[u'消息目标',u'会话ID',u'消息内容'])
 rawdata = rawdata.loc[rawdata[u'消息目标'] == u'机器人',:]    
-rawdata = rawdata.sort([u'会话ID'])
+rawdata = rawdata.sort([u'会话Id'])
 rawdata = rawdata.drop_duplicates()
 #---------------------------------------------------------------------------------------------------
 TF_term = []
 IDF_term = []
 ALL_term = []
-userIDs = list(rawdata[u'会话ID'])
+userIDs = list(rawdata[u'会话Id'])
 conversations = list(rawdata[u'消息内容'])
 oldidx=None
 add = ['used to drop']
+ 
 for idx,userID in enumerate(userIDs):
     conversation = conversations[idx]
-    if len(conversation)>6:
+    if  len(conversation)>6:
         conversation = [pair.word for pair in pseg.lcut(conversation) if pair.flag in ['n','ns','vs','nv']]       
         if len(conversation)>0:
             if userID!=oldidx:

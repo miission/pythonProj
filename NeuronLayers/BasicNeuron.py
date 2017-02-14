@@ -5,7 +5,7 @@ Created on Tue Nov 29 10:38:56 2016
 @author: changlue.she
 """
 from __future__ import division
-from DeepLearning.activeFunctions import actfuncs
+from NeuronLayers.activeFunctions import actfuncs
 import numpy as np
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 class baseNeuronLayer():
