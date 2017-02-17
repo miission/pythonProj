@@ -1,7 +1,7 @@
 from __future__                 import division
 from nltk.corpus                import brown
-from DeepLearning.BasicNeuron   import baseNeuronLayer
-from DeepLearning.CnnNeuron     import word2vecCovLayer
+from NeuronLayers.BasicNeuron   import baseNeuronLayer
+from NeuronLayers.CnnNeuron     import word2vecCovLayer
 from NLP.statisticLanguageModel import statisLM
 import numpy  as np
 #-----------------------------------------------------------------------------------------------------------------------------------------------

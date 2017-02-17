@@ -81,7 +81,7 @@ class statisLM():
         for codei in np.argsort(avgSimilar)[:mostSimilarPair]:
             codes = np.argsort(self.distArray[codei])[1:mostSimilarPair]
             words = [self.code2word[code] for code in codes]
-            print self.code2word[codei]+' : '+'|'.join(words)
+            print (self.code2word[codei]+' : '+'|'.join(words))
          
     def getMostSimilarWord(self,word='',lis=10,types='distance'):  
         if word=='':
@@ -102,7 +102,7 @@ class statisLM():
                 elif types=='cosSimilar':
                     distVec.append(getDist.cosine(vec1,vec2))     
             for code in np.argsort(distVec)[1:lis]:
-                print self.code2word[code] 
+                print (self.code2word[code] )
             
  
     def initialWordHash(self,ngram = 5):        
@@ -128,7 +128,7 @@ class statisLM():
                 if self.ngcharDict[gr]>freq:
                     self.ngchar2code[gr]=idx
                     idx+=1      
-            print idx
+            print (idx)
             freq = raw_input('continue to find a good word hash dimemsion?')
         self.wordhash = np.zeros(shape=(len(self.wordDict),idx+1))
         for word in self.word2code:

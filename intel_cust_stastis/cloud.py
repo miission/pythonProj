@@ -9,21 +9,24 @@ from wordcloud import WordCloud
 from PIL import Image
 import numpy as np
 import pandas as pd
+mask=0
 dirc = 'C:\\Users\\Administrator.NBJXUEJUN-LI\\Desktop\project\MSXF\intel_cust\\statistics\\history\\'
-QAdf = pd.read_csv(dirc+'Keytopic.csv',encoding='gbk')
-
+QAdf = pd.read_csv(dirc+'keyTopic.csv',encoding='gbk')
+ 
+ 
 picdir = 'C:\\Users\\Administrator.NBJXUEJUN-LI\\Desktop\\project\\MSXF\\intel_cust\\statistics\\pics\\'
 text = ''
 for i,cate in enumerate(QAdf[u'所属分类']):
     text += (' '+cate.split('/')[-1])*QAdf[u'命中次数'][i]
 text = text.split(' ')
 text = ' '.join(text)
-
-alice_mask = np.array(Image.open(picdir+'msxf2.jpg'))
- 
-wordcloud = WordCloud(font_path='C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/intel_cust/pycode/simhei.ttf', 
-                          background_color="white",  
-                          mask=alice_mask).generate(text)
+if mask:
+    alice_mask = np.array(Image.open(picdir+'msxf3.jpg'))
+    wordcloud = WordCloud(font_path='C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/intel_cust/pycode/simhei.ttf', 
+                              background_color="white", mask=alice_mask).generate(text)
+else:
+    wordcloud = WordCloud(font_path='C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/intel_cust/pycode/simhei.ttf', 
+                              background_color="white").generate(text)
 # Display the generated image:
 # the matplotlib way:
 import matplotlib.pyplot as plt
