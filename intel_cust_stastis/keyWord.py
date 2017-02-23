@@ -11,16 +11,16 @@ import numpy as np
 from collections import Counter
 jieba.load_userdict('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/pythonProj/intel_cust_stastis/userDict.txt')  
 #---------------------------------------------------------------------------------------------------
-#rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/conversation.csv',
-#                      header=0,encoding='gbk',usecols=[u'消息目标',u'会话ID',u'消息内容'])
+rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/ZhiChi/Statistic/output/conversation.csv',
+                      header=0,encoding='gbk',usecols=[u'消息目标',u'会话ID',u'消息内容'])
 rawdata = rawdata.loc[rawdata[u'消息目标'] == u'机器人',:]    
-rawdata = rawdata.sort([u'会话Id'])
+rawdata = rawdata.sort([u'会话ID'])
 rawdata = rawdata.drop_duplicates()
 #---------------------------------------------------------------------------------------------------
 TF_term = []
 IDF_term = []
 ALL_term = []
-userIDs = list(rawdata[u'会话Id'])
+userIDs = list(rawdata[u'会话ID'])
 conversations = list(rawdata[u'消息内容'])
 oldidx=None
 add = ['used to drop']
@@ -39,6 +39,7 @@ for idx,userID in enumerate(userIDs):
                  add = conversation
             else:
                  add+= conversation
+                 
 TF_term.pop(0)             
 wordFreq  = dict(Counter(ALL_term))
 allDocNum = len(TF_term)
@@ -61,9 +62,9 @@ keyWord = dict(Counter(keyWord))
 idxs = np.argsort(-np.array(list(keyWord.values())))[:20]
 keywords = [list(keyWord.keys())[idx] for idx in idxs]
 wordFreq = [wordFreq[word] for word in keywords]
-tmp =[keywords,wordFreq]
-
+#save those key words
 outfile = pd.DataFrame([keywords,wordFreq])
 outfile = outfile.T
-dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/关键词句.xlsx'
+dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/ZhiChi/Statistic/output/关键词句.xlsx'
 outfile.to_excel(dirs,encoding='gb18030',index=False )
+ 

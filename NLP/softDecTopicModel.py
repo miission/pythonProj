@@ -8,7 +8,8 @@ from __future__ import division
 import numpy as np
 from NeuronLayers.activeFunctions import actfuncs
 from NeuronLayers.BasicNeuron import softmaxLayer
-import pickle
+#import pickle
+from intel_cust_stastis.LDApreprocess import corpus,sentences
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 #corps = pickle.load(open("C:\\Users\\Administrator.NBJXUEJUN-LI\\Desktop\\project\\pick1214sec.pkl","rb"))
 wordCorps = corpus
@@ -41,7 +42,7 @@ for corp in wordCorp:
     wordCorps.append(corp)
     codeCorps.append([word2code[w]for w in list(set(corp))])
 #-----------------------------------------------------------------------------------------------------------------------------------------------
-topicNums = 10
+topicNums = 8
 docNums = len(codeCorps)
 wordNums = len(code2word)
 doc2topic = np.random.normal(size = (docNums,topicNums)) 
@@ -104,5 +105,5 @@ outDF = [keywords,keysentences]
 import pandas as pd
 outDF = pd.DataFrame(outDF)
 outDF = outDF.T
-dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/intel_cust/statistics/history/主题词句2.xlsx'
+dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/ZhiChi/Statistic/output/主题词句.xlsx'
 outDF.to_excel(dirs,encoding='gb18030',index=False,header=None )
