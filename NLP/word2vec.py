@@ -7,11 +7,11 @@ import numpy  as np
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 corps = brown.sents(categories=None)
 corps = list(corps)
-slm = statisLM(corps,50)
+slm = statisLM(corps,100)
 #-----------------------------------------------------------------------------------------------------------------------------------------------
-window = 2
-wordDim = 50
-outDim =50
+window = 5
+wordDim = 100
+outDim =100
 outs =1
 hiddenFunc = 'tanh'
 outFunc = 'sigmoid'
@@ -31,8 +31,8 @@ outlayer = baseNeuronLayer(outDim,outs,actfunc = outFunc)
 function
 ''' 
  
-l2=0.001                            
-learning=0.1
+l2=0.0001                            
+learning=0.05
 def fit(context,y):        
      rawinput = np.zeros(shape=(window,context.shape[0],wordDim))
      for idx in range(context.shape[1]):
@@ -44,8 +44,7 @@ def fit(context,y):
      outputError       = outlayer.updateError(outputError,learning,l2)
      deltax            = cnnlayer.updataError(outputError,learning,l2)
      slm.updateWordVec(deltax,context,learning,l2)
-     if np.random.normal(1)>5:
-         print (ers,learning )
+     print (ers,learning )
 #-----------------------------------------------------------------------------------------------------------------------------------------------      
 '''
 training
@@ -56,26 +55,26 @@ while 2>1:
         if len(corp)>=window:             
              fakecorp  = corp[::-1]                 
              for wordidx in range(0,len(corp)-window+1):
-                 if slm.subSampCode(corp[wordidx]):
-                     addX  = np.array([corp[wordidx:wordidx+window],fakecorp[wordidx:wordidx+window]])
-                     addY  = np.array([[1],[0]])
-                     if cot==0:
-                         X = addX
-                         y = addY
-                     else:
-                         X = np.append(X,addX,axis=0)                     
-                         y = np.append(y,addY,axis=0)
-                     cot+=1
-             if cot>100:
+                 #if slm.subSampCode(corp[wordidx]):
+                 addX  = np.array([corp[wordidx:wordidx+window],fakecorp[wordidx:wordidx+window]])
+                 addY  = np.array([[1],[0]])
+                 if cot==0:
+                     X = addX
+                     y = addY
+                 else:
+                     X = np.append(X,addX,axis=0)                     
+                     y = np.append(y,addY,axis=0)
+                 cot+=1
+             if cot>200:
                  fit(X,y)
                  cot = 0
 #-----------------------------------------------------------------------------------------------------------------------------------------------      
 '''
 tesing
 '''           
-slm.getMostSimilarWord(types='distance')
-slm.getMostSimilarWord(word='man',types='cosSimilar')
-slm.wordvec
+ 
+slm.getMostSimilarWord(word='one',types='cosSimilar')
+ 
 #-----------------------------------------------------------------------------------------------------------------------------------------------      
 '''save trained model and vec'''
 #import cPickle
