@@ -17,7 +17,7 @@ x,y = X_train,y_train
 print ('test my least square gbt')
 a = datetime.datetime.now()
 from sgbt import Sgbt
-slf = Sgbt(depth=1,minisamp=50,precise=2,rounds=500,eta=1,fittype='lg',earlystop=0.001)
+slf = Sgbt(depth=1,minisamp=50,precise=2,rounds=5000,eta=1,fittype='lg',earlystop=0.001)
 slf.fit(X_train,y_train)
 b = datetime.datetime.now() 
 print (b-a)
@@ -28,7 +28,7 @@ print (b-a)
 #-------------------------------------------------------------------------------------- 
 print ('test sklearn gbt')
 a = datetime.datetime.now()
-clf = GradientBoostingClassifier(n_estimators=500, learning_rate=1,
+clf = GradientBoostingClassifier(n_estimators=5000, learning_rate=1,
      max_depth=1, random_state=0).fit(X_train, y_train)
 b = datetime.datetime.now() 
 print (b-a)
