@@ -10,16 +10,15 @@ import pandas as pd
  
 jieba.load_userdict('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/pythonProj/intel_cust_stastis/userDict.txt')  
 #---------------------------------------------------------------------------------------------------
-rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/ZhiChi/Statistic/output/conversation.csv',
-                      header=0,encoding='gbk',usecols=[u'消息目标',u'会话ID',u'消息内容'])
-rawdata = rawdata.loc[rawdata[u'消息目标'] == u'机器人',:]    
-rawdata = rawdata.sort([u'会话ID'])
+rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/message feature etl/smsResult.csv',
+                      header=0,encoding='gbk' )
 rawdata = rawdata.drop_duplicates()
 #---------------------------------------------------------------------------------------------------
 corpus = []
 sentences = []
-userIDs = list(rawdata[u'会话ID'])
-conversations = list(rawdata[u'消息内容'])
+userIDs = range(len(rawdata['x']))
+conversations = list(rawdata[u'x'])
+
 for sentence in conversations:
     sentence = sentence.replace('\t','')
     words = [pair.word for pair in pseg.lcut(sentence) if pair.flag in ['n','ns','vs','nv']]       
