@@ -8,18 +8,19 @@ import jieba.posseg as pseg
 import jieba
 import pandas as pd
  
-jieba.load_userdict('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/pythonProj/intel_cust_stastis/userDict.txt')  
+jieba.load_userdict('../intel_cust_stastis/userDict.txt')  
 #---------------------------------------------------------------------------------------------------
-rawdata = pd.read_csv('C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/message feature etl/smsResult.csv',
-                      header=0,encoding='gbk' )
+rawdata = pd.read_csv('../../TFProj/Natural language process/corpus/opr_rem.csv',
+                      header=0)
 rawdata = rawdata.drop_duplicates()
 #---------------------------------------------------------------------------------------------------
 corpus = []
 sentences = []
-userIDs = range(len(rawdata['x']))
-conversations = list(rawdata[u'x'])
+userIDs = range(len(rawdata['opr_rem']))
+conversations = list(rawdata[u'opr_rem'])
 
 for sentence in conversations:
+    sentence = str(sentence)
     sentence = sentence.replace('\t','')
     words = [pair.word for pair in pseg.lcut(sentence) if pair.flag in ['n','ns','vs','nv']]       
     if len(words)>2:

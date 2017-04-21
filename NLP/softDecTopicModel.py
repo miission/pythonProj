@@ -105,5 +105,5 @@ outDF = [keywords,keysentences]
 import pandas as pd
 outDF = pd.DataFrame(outDF)
 outDF = outDF.T
-dirs = 'C:/Users/Administrator.NBJXUEJUN-LI/Desktop/project/MSXF/message feature etl/主题词句.xlsx'
+dirs = '../../MSXF/message feature etl/主题词句.xlsx'
 outDF.to_excel(dirs,encoding='gb18030',index=False,header=None )
