@@ -1,4 +1,6 @@
 from __future__                 import division
+import sys
+sys.path.append('E:\project\pythonProj') 
 from nltk.corpus                import brown
 from NeuronLayers.BasicNeuron   import baseNeuronLayer
 from NeuronLayers.CnnNeuron     import word2vecCovLayer
@@ -65,16 +67,14 @@ while 2>1:
                      X = np.append(X,addX,axis=0)                     
                      y = np.append(y,addY,axis=0)
                  cot+=1
-             if cot>200:
+             if cot>2000:
                  fit(X,y)
                  cot = 0
 #-----------------------------------------------------------------------------------------------------------------------------------------------      
 '''
 tesing
 '''           
- 
 slm.getMostSimilarWord(word='one',types='cosSimilar')
- 
 #-----------------------------------------------------------------------------------------------------------------------------------------------      
 '''save trained model and vec'''
 #import cPickle

@@ -1,7 +1,11 @@
 from __future__ import division
+import sys
+sys.path.append("E:\project\pythonProj")
 import numpy as np
+import nltk
+nltk.download()
 from nltk.corpus import brown
-from DeepLearning.activeFunctions import actfuncs
+from NeuronLayers.activeFunctions import actfuncs
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 rawcorpus = brown.sents(categories=None)
 rawcorpus = list(rawcorpus)
@@ -84,7 +88,7 @@ while 2>1:
                     positiveErrors           *= positiveGrad
                     negtiveErrors            *= negtiveGrad
                     if cot>10000:                
-                        print ers/cot
+                        print (ers/cot)
                         ers = 0
                         cot = 0
                     postiveVecError           = positiveErrors.dot(targVec)
@@ -101,4 +105,4 @@ distList = []
 for vec in  wordVec:
     distList.append(getDist.euclidean(wordVec[code],vec))
 for code in np.argsort(distList)[1:10]:
-    print code2word[code] 
+    print(code2word[code]) 
