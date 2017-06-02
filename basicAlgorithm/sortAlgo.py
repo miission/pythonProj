@@ -43,4 +43,3 @@ arrySeq = quickSort(arry)
 end = time.clock()
 print("快速排序用时：",round(end-start,2))
 
- 
